@@ -18,6 +18,8 @@
 	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/merkli.js"></script>
 
 	<?php wp_head(); ?>
+
+	<meta name="description" content="CEDRIC CHRISTOPHER MERKLI - PHOTOGRAPHY + VISUAL WORK" />
 	<title><?php bloginfo('name'); ?> <?php wp_title(); ?></title>
 </head>
 <body <?php body_class(); ?>>
