@@ -1,8 +1,14 @@
+</div>
+</div>
+<div class="galleryInteraction visible">
+	<a href="javascript:;" class="icon arrow-left paginationPrev"></a>
+	<a href="javascript:;" class="icon info showCaption"></a>
+	<a href="javascript:;" class="icon overview showOverview"></a>
+	<a href="javascript:;" class="icon arrow-right paginationNext"></a>
+</div>
 <footer>
 
-<?php wp_footer(); ?>
+	<?php wp_footer(); ?>
 </footer>
-</div>
-</div>
-</body>
-</html>
+
+</body></html>

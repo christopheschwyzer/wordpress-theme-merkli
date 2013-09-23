@@ -1,4 +1,4 @@
-var previewMode = false;
+var previewActive = false;
 
 $(document).ready(function() {
 	// Masonry
@@ -9,9 +9,10 @@ $(document).ready(function() {
 	});
 
 	// Toggle off-screen Navigation
-	$('.toggleMenu').on('click', function(e) {
-		$('.offCanvas').toggleClass('active');
-		$('.menu-opener').toggleClass('open');
+	$('.toggleMenu').on('click', function() {
+		var offCanvasActive = $('.offCanvas').hasClass('active');
+		offCanvasNavigation(!offCanvasActive);
+		previewInteraction(offCanvasActive);
 	});
 
 	var $thumbs = $('.thumb');
@@ -20,8 +21,10 @@ $(document).ready(function() {
 	$thumbs.on('click', function(e) {
 		currentId = $(e.currentTarget).data('project-id');
 		loadPreview(currentId);
-		switchView();
-		previewMode = true;
+		previewMode(true);
+		previewInteraction(true);
+		offCanvasNavigation(false);
+		previewActive = true;
 	});
 
 	// ***************************************
@@ -30,9 +33,13 @@ $(document).ready(function() {
 	$(document).hammer().on("tap", ".thumb", function(event) {
 		console.log(this, event);
 	});
-
-
 });
+
+function offCanvasNavigation(state) {
+	$('.offCanvas').toggleClass('active', state);
+	$('.menu-opener').toggleClass('open', state);
+	previewInteraction(!state);
+}
 
 function navigate(direction) {
 	var currentId = $('.preview').find('.post').data('project-id');
@@ -78,16 +85,23 @@ function bindNavigation() {
 }
 
 $(document).keyup(function(event) {
-	if (previewMode && event.keyCode == 39) {
+	if (previewActive && event.keyCode == 39) {
 		loadPreview(navigate('next'));
-	} else if (previewMode && event.keyCode == 37) {
+	} else if (previewActive && event.keyCode == 37) {
 		loadPreview(navigate('prev'));
 	}
 });
 
-function switchView() {
-	$('.preview').empty();
-	$('.gallery, .preview').toggle();
+function previewMode(state) {
+	if (state) {
+		$('.preview').empty();
+	}
+	$('.gallery').toggle(!state);
+	$('.preview').toggle(state);
+}
+
+function previewInteraction(state) {
+	$('.galleryInteraction').toggle(state);
 }
 
 function loadPreview(id) {
@@ -111,7 +125,8 @@ function updatePhotoInfo() {
 
 	// Show gallery
 	$('.showOverview').on('click', function() {
-		switchView();
+		previewMode(false);
+		previewInteraction(false);
 	});
 
 	var galleryToggle = function(state) {
