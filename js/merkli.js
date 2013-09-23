@@ -1,114 +1,153 @@
-$(document).ready(function () {
+var previewMode = false;
 
-
-	// Add next link to image
-	$(function () {
-		var nextLink = $('.pagination .next a').attr('href');
-		if (nextLink) {
-			$('.post img').wrap('<a href="' + nextLink + '" />');
-		}
+$(document).ready(function() {
+	// Masonry
+	$(window).on('load', function() {
+		$('.gallery').masonry({
+			itemSelector: '.thumb'
+		});
 	});
 
-	var thumbs = $('.thumb');
-	var gallery = $('.gallery');
-	var preview = $('.preview');
-
-	var loadPreview = function (id) {
-		var url = '/?p=' + id;
-		$.get(url, function (data) {
-			$('.preview').html(data);
-		}).success(function() {
-				resizeVideo();
-				$('img').data("title", $(this).attr("title")).removeAttr("title");
-				$('img').bind('contextmenu', function (e) {
-					return false;
-				});
-			});
-	};
-
-	loadPreview(thumbs.first().attr('data-project-id'));
-
-	thumbs.on('click', function () {
-		$('.preview').empty();
-		loadPreview($(this).attr('data-project-id'));
-		gallery.toggle();
-		preview.toggle();
+	// Toggle off-screen Navigation
+	$('.toggleMenu').on('click', function(e) {
+		$('.offCanvas').toggleClass('active');
+		$('.menu-opener').toggleClass('open');
 	});
 
-	// bigPagination
-	$(window).resize(function () {
-		var bigPaginationWidth = ($(window).width() - preview.width()) / 2;
-		$('.bigPagination').css({width:bigPaginationWidth - 20});
+	var $thumbs = $('.thumb');
+	var currentId = $thumbs.first().data('project-id');
+
+	$thumbs.on('click', function(e) {
+		currentId = $(e.currentTarget).data('project-id');
+		loadPreview(currentId);
+		switchView();
+		previewMode = true;
 	});
 
-	// loadNext
-	$('.image img, .pagination .next, .bigPagination.next').live('click', function () {
-		loadNextPreview(true);
+	// ***************************************
+
+	// Hammer js
+	$(document).hammer().on("tap", ".thumb", function(event) {
+		console.log(this, event);
 	});
-
-	$('.pagination .prev, .bigPagination.prev').live('click', function () {
-		loadNextPreview(false);
-	});
-
-
-
-	// Show Info
-	var captionOpener = $('.captionPanel');
-
-	captionOpener.live('click', function () {
-		$(this).toggleClass('active');
-		var text = $(this).hasClass('active') == true ? '-' : '+';
-		$(this).children(":first").text(text);
-		$('.captionWindow').toggle();
-	});
-
-	// Show gallery
-	var galleryOpener = $('.showOverview');
-
-	galleryOpener.live('click', function () {
-		gallery.toggle();
-		preview.toggle();
-	});
-
-
-	var loadNextPreview = function (direction) {
-		var id = preview.find('.post').attr('data-project-id');
-		var rel = gallery.find("[data-project-id='" + id + "']");
-		var el = direction == true ? rel.next() : rel.prev();
-
-		loadPreview(el.attr('data-project-id'));
-	};
-
 
 
 });
 
+function navigate(direction) {
+	var currentId = $('.preview').find('.post').data('project-id');
+	var galleryOffsetId = $('.gallery').find("[data-project-id='" + currentId + "']");
 
-var resizeVideo = function () {
+	if (direction == 'next') {
+		var galleryNextId = galleryOffsetId.next().data('project-id');
 
-	var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed"),
-		$fluidEl = $('.sheet');
+		if (null === galleryNextId) {
+			galleryNextId = $('.gallery .thumb').first().data('project-id');
+		}
+		return galleryNextId;
 
-	$allVideos.each(function () {
+	} else if (direction == 'prev') {
+		var galleryPrevId = galleryOffsetId.prev().data('project-id');
 
-		$(this)
-			// jQuery .data does not work on object/embed elements
-			.attr('data-aspectRatio', this.height / this.width)
-			.removeAttr('height')
-			.removeAttr('width');
+		if (null === galleryPrevId) {
+			galleryPrevId = $('.gallery .thumb').last().data('project-id');
+		}
+		return galleryPrevId;
+	}
+}
+
+function bindNavigation() {
+	var forceNavigationHover = function(state) {
+		$('.paginationNext').toggleClass('hover', state);
+	}
+	$('.image').mouseover(function() {
+		forceNavigationHover(true);
+	}).mouseleave(function() {
+			forceNavigationHover(false);
+		});
+
+
+
+	$('.image img, .paginationNext').on('click', function() {
+		loadPreview(navigate('next'));
+	});
+
+	$('.paginationPrev').on('click', function() {
+		loadPreview(navigate('prev'));
+	});
+}
+
+$(document).keyup(function(event) {
+	if (previewMode && event.keyCode == 39) {
+		loadPreview(navigate('next'));
+	} else if (previewMode && event.keyCode == 37) {
+		loadPreview(navigate('prev'));
+	}
+});
+
+function switchView() {
+	$('.preview').empty();
+	$('.gallery, .preview').toggle();
+}
+
+function loadPreview(id) {
+	var url = '/?p=' + id;
+	$.get(url,function(data) {
+		$('.preview').html(data);
+	}).success(function() {
+			resizeVideo();
+			bindNavigation();
+			//			preventImageInteraction();
+			updatePhotoInfo();
+		});
+}
+
+function updatePhotoInfo() {
+
+	// Show Info
+	$('.showCaption').on('click', function() {
+		$('.caption').toggle();
+	});
+
+	// Show gallery
+	$('.showOverview').on('click', function() {
+		switchView();
+	});
+
+	var galleryToggle = function(state) {
+		$('.galleryInteraction').toggleClass('visible', state);
+	}
+	$('body').mouseenter(function() {
+		galleryToggle(true);
+	}).mouseleave(function() {
+			galleryToggle(false);
+		});
+}
+
+function preventImageInteraction() {
+	$('img').data("title", $(this).attr("title")).removeAttr("title");
+	$('img').bind('contextmenu', function(e) {
+		return false;
+	});
+}
+
+function resizeVideo() {
+	var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed"), $fluidEl = $('.sheet');
+
+	$allVideos.each(function() {
+
+		$(this)// jQuery .data does not work on object/embed elements
+			.attr('aspectRatio', this.height / this.width).removeAttr('height').removeAttr('width');
 
 	});
 
-	$(window).resize(function () {
+	$(window).resize(function() {
 
 		var newWidth = $fluidEl.width();
-		$allVideos.each(function () {
+		$allVideos.each(function() {
 
 			var $el = $(this);
-			$el
-				.width(newWidth)
-				.height(newWidth * $el.attr('data-aspectRatio'));
-
+			$el.width(newWidth).height(newWidth * $el.attr('aspectRatio'));
 		});
 
 	}).resize();

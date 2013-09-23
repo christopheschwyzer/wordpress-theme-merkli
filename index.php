@@ -19,6 +19,6 @@
 
 <section class="preview"></section>
 
-<a href="javascript:;" class="bigPagination prev"></a>
-<a href="javascript:;" class="bigPagination next"></a>
+<!--<a href="javascript:;" class="bigPagination prev"></a>-->
+<!--<a href="javascript:;" class="bigPagination next"></a>-->
 <?php get_footer(); ?>

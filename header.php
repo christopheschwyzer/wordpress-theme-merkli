@@ -14,8 +14,21 @@
 
 	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico"/>
 
-	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/modernizr.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/masonry.min.js"></script>
+	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/jquery.hammer.min.js"></script>
 	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/merkli.js"></script>
+	<!-- jQuery -->
+
+
+	<!-- jQuery ScrollTo Plugin -->
+<!--	<script src="//balupton.github.io/jquery-scrollto/lib/jquery-scrollto.js"></script>-->
+	<!-- History.js -->
+<!--	<script src="//browserstate.github.io/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>-->
+
+	<!-- Ajaxify -->
+<!--	<script src="//rawgithub.com/browserstate/ajaxify/master/ajaxify-html5.js"></script>-->
 
 	<?php wp_head(); ?>
 
@@ -23,4 +36,25 @@
 	<title><?php bloginfo('name'); ?> <?php wp_title(); ?></title>
 </head>
 <body <?php body_class(); ?>>
-<div class="sheet">
+
+	<a href="javascript:;" class="toggleMenu"><span class="menu-opener"></span></a>
+	<div class="offCanvas">
+		<header class="header">
+			<h1 class="headline"><?php bloginfo('name'); ?></h1>
+		</header>
+		<div id="navigation">
+		<?php
+		if (function_exists('has_nav_menu') && has_nav_menu('primary-menu')) {
+			?>
+			<nav class="main-menu">
+				<?php wp_nav_menu(array('depth' => 6, 'sort_column' => 'menu_order', 'container' => 'ul', 'menu_class' => 'main-menu-list', 'menu_id' => 'main-nav', 'theme_location' => 'primary-menu')); ?>
+			</nav>
+		<?php
+		} else {
+			?>
+			<p>Error: There is no menu</p>
+		<?php } ?>
+		</div>
+
+
+		<div class="sheet">
