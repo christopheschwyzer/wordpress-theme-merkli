@@ -21,17 +21,7 @@
 	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/merkli.js"></script>
 	<!-- jQuery -->
 
-
-	<!-- jQuery ScrollTo Plugin -->
-<!--	<script src="//balupton.github.io/jquery-scrollto/lib/jquery-scrollto.js"></script>-->
-	<!-- History.js -->
-<!--	<script src="//browserstate.github.io/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>-->
-
-	<!-- Ajaxify -->
-<!--	<script src="//rawgithub.com/browserstate/ajaxify/master/ajaxify-html5.js"></script>-->
-
 	<?php wp_head(); ?>
-
 	<meta name="description" content="CEDRIC CHRISTOPHER MERKLI - PHOTOGRAPHY + VISUAL WORK" />
 	<title><?php bloginfo('name'); ?> <?php wp_title(); ?></title>
 </head>
@@ -55,6 +45,4 @@
 			<p>Error: There is no menu</p>
 		<?php } ?>
 		</div>
-
-
 		<div class="sheet">

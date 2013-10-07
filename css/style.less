@@ -306,7 +306,6 @@ h3 {
 }
 
 .preview {
-	display: none;
 	padding: 0 8px;
 
 	@media (min-width: 800px) {
@@ -315,12 +314,16 @@ h3 {
 
 }
 
+#navigationLinks {
+	display: none;
+}
+
 .post {
 	.post-content {
 
 		.column {
 			.box-sizing(border-box);
-			padding: 2px;
+			padding: 5px;
 			width: 100%;
 		}
 
@@ -374,7 +377,6 @@ h3 {
 			width: 100% !important;
 			height: auto !important;
 		}
-
 	}
 
 	.caption {
@@ -430,10 +432,18 @@ h3 {
 	}
 }
 
+#currentCategory {
+	display: none;
+}
+
 .galleryInteraction {
 	display: none;
 	background-color: @colorBg;
 	.transition(200ms);
+
+	body.single & {
+		display: block;
+	}
 
 	&:not(.visible) {
 		html.no-touch & {
@@ -462,17 +472,10 @@ h3 {
 			}
 		}
 
-		.showCaption, .showOverview {
+		.showCaption{
 			position: fixed;
-			z-index: 1;
+			z-index: 2;
 			top: 8px;
-		}
-
-		.showCaption {
-			right: 36px;
-		}
-
-		.showOverview {
 			right: 8px;
 		}
 	}
@@ -487,7 +490,7 @@ h3 {
 
 		.icon {
 			height: 100%;
-			width: 25%;
+			width: 33.3%;
 			float: left;
 		}
 	}

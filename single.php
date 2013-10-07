@@ -1,6 +1,8 @@
+<?php get_header(); ?>
+<div class="preview">
 <?php
 if (have_posts()) :
-	while (have_posts()) : the_post(); ?>
+	while (have_posts()) : the_post();?>
 		<div id="post-<?php the_ID(); ?>" data-project-id="<?php the_ID(); ?>" class="post">
 			<div class="post-content clearfix">
 				<?php the_content(); ?>
@@ -10,7 +12,14 @@ if (have_posts()) :
 				<div class="description"><?php the_excerpt(); ?></div>
 			</div>
 		</div>
+
+		<div id="navigationLinks">
+			<div class="next"><?php next_post(); ?></div>
+			<div class="previous"><?php previous_post(); ?></div>
+		</div>
 	<?php endwhile; ?>
 <?php else : ?>
 	<p>Sorry, but you are looking for something that isn't here.</p>
 <?php endif; ?>
+</div>
+<?php get_footer(); ?>

@@ -15,24 +15,13 @@ $(document).ready(function() {
 		previewInteraction(offCanvasActive);
 	});
 
-	var $thumbs = $('.thumb');
-	var currentId = $thumbs.first().data('project-id');
-
-	$thumbs.on('click', function(e) {
-		currentId = $(e.currentTarget).data('project-id');
-		loadPreview(currentId);
-		previewMode(true);
-		previewInteraction(true);
-		offCanvasNavigation(false);
-		previewActive = true;
-	});
-
-	// ***************************************
-
 	// Hammer js
 	$(document).hammer().on("tap", ".thumb", function(event) {
 		console.log(this, event);
 	});
+
+	updatePhotoInfo();
+	bindNavigation();
 });
 
 function offCanvasNavigation(state) {
@@ -41,27 +30,6 @@ function offCanvasNavigation(state) {
 	previewInteraction(!state);
 }
 
-function navigate(direction) {
-	var currentId = $('.preview').find('.post').data('project-id');
-	var galleryOffsetId = $('.gallery').find("[data-project-id='" + currentId + "']");
-
-	if (direction == 'next') {
-		var galleryNextId = galleryOffsetId.next().data('project-id');
-
-		if (null === galleryNextId) {
-			galleryNextId = $('.gallery .thumb').first().data('project-id');
-		}
-		return galleryNextId;
-
-	} else if (direction == 'prev') {
-		var galleryPrevId = galleryOffsetId.prev().data('project-id');
-
-		if (null === galleryPrevId) {
-			galleryPrevId = $('.gallery .thumb').last().data('project-id');
-		}
-		return galleryPrevId;
-	}
-}
 
 function bindNavigation() {
 	var forceNavigationHover = function(state) {
@@ -73,60 +41,56 @@ function bindNavigation() {
 			forceNavigationHover(false);
 		});
 
+	// Update navigation links
+	var nextLink = $('#navigationLinks .next > a').attr('href');
+	var previousLink = $('#navigationLinks .previous > a').attr('href');
+
+	var $customNextLink = $('.galleryInteraction .paginationNext');
+	if (nextLink) {
+		$customNextLink.attr('href', nextLink);
+	} else {
+		$customNextLink.hide();
+	}
+
+	var $customPreviousLink = $('.galleryInteraction .paginationPrev');
+
+	if (previousLink) {
+		$customPreviousLink.attr('href', previousLink);
+	} else {
+		$customPreviousLink.hide();
+	}
 
 
 	$('.image img, .paginationNext').on('click', function() {
-		loadPreview(navigate('next'));
+		navigate(nextLink);
 	});
 
-	$('.paginationPrev').on('click', function() {
-		loadPreview(navigate('prev'));
-	});
+	var navigationLinks = new Array(nextLink, previousLink);
+	return navigationLinks;
+}
+
+function navigate(link) {
+	window.location.href = link;
 }
 
 $(document).keyup(function(event) {
 	if (previewActive && event.keyCode == 39) {
-		loadPreview(navigate('next'));
+		navigate(bindNavigation[0]);
 	} else if (previewActive && event.keyCode == 37) {
-		loadPreview(navigate('prev'));
+		navigate(bindNavigation[1]);
 	}
 });
-
-function previewMode(state) {
-	if (state) {
-		$('.preview').empty();
-	}
-	$('.gallery').toggle(!state);
-	$('.preview').toggle(state);
-}
 
 function previewInteraction(state) {
 	$('.galleryInteraction').toggle(state);
 }
 
-function loadPreview(id) {
-	var url = '/?p=' + id;
-	$.get(url,function(data) {
-		$('.preview').html(data);
-	}).success(function() {
-			resizeVideo();
-			bindNavigation();
-			//			preventImageInteraction();
-			updatePhotoInfo();
-		});
-}
 
 function updatePhotoInfo() {
 
 	// Show Info
 	$('.showCaption').on('click', function() {
 		$('.caption').toggle();
-	});
-
-	// Show gallery
-	$('.showOverview').on('click', function() {
-		previewMode(false);
-		previewInteraction(false);
 	});
 
 	var galleryToggle = function(state) {
