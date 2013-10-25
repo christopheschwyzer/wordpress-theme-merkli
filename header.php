@@ -14,12 +14,7 @@
 
 	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico"/>
 
-	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/modernizr.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/masonry.min.js"></script>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/jquery.hammer.min.js"></script>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/merkli.js"></script>
-	<!-- jQuery -->
+	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/01-modernizr.js"></script>
 
 	<?php wp_head(); ?>
 	<meta name="description" content="CEDRIC CHRISTOPHER MERKLI - PHOTOGRAPHY + VISUAL WORK" />
@@ -28,11 +23,10 @@
 <body <?php body_class(); ?>>
 
 	<a href="javascript:;" class="toggleMenu"><span class="menu-opener"></span></a>
-	<div class="offCanvas">
-		<header class="header">
-			<h1 class="headline"><?php bloginfo('name'); ?></h1>
-		</header>
-		<div id="navigation">
+	<header class="header">
+		<h1 class="headline"><a href="/"><?php bloginfo('name'); ?></a></h1>
+	</header>
+	<div id="navigation">
 		<?php
 		if (function_exists('has_nav_menu') && has_nav_menu('primary-menu')) {
 			?>
@@ -44,5 +38,7 @@
 			?>
 			<p>Error: There is no menu</p>
 		<?php } ?>
-		</div>
+	</div>
+	<div class="offCanvas">
+
 		<div class="sheet">
