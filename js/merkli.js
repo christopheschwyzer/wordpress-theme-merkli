@@ -20,6 +20,7 @@ $(document).ready(function() {
 
 	updatePhotoInfo();
 	bindNavigation();
+	preventImageInteraction();
 });
 
 function offCanvasNavigation(state) {
