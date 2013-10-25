@@ -133,10 +133,10 @@ h3 {
 
 .header, .headline {
 	.box-sizing(border-box);
-	height: 42px;
+	height: 44px;
 
 	@media (min-width: 800px) {
-		height: 140px;
+		height: 120px;
 	}
 }
 
@@ -147,8 +147,13 @@ h3 {
 	width: 100%;
 	background-color: @colorBg;
 	z-index: 1;
-	padding: 12px 45px 0 12px;
-	line-height: 20px;
+	padding: 0 45px 0 12px;
+	line-height: 44px;
+
+	a {
+		color: @color;
+		text-decoration: none;
+	}
 
 	@media (min-width: 800px) {
 		padding: 40px 0 0 40px;
@@ -189,10 +194,9 @@ h3 {
 	.transition(200ms);
 
 
-	&.active {
+	html.offCanvas-active & {
 		.transform(translate3d(-@navigationSize, 0, 0));
 		perspective: 1000;
-
 	}
 }
 
@@ -207,6 +211,11 @@ h3 {
 	z-index: 1;
 	background-color: @colorBg;
 	.transform(translate3d(100%, 0, 0));
+	.transition(200ms);
+
+	html.offCanvas-active & {
+		.transform(translate3d(0, 0, 0));
+	}
 
 	@media (min-width: 800px) {
 		background-color: @colorBg;
@@ -235,7 +244,7 @@ h3 {
 					}
 				}
 
-				&.current-menu-item {
+				&.current-menu-item, &.current-post-ancestor {
 					> a {
 						color: @color;
 					}
@@ -268,7 +277,7 @@ h3 {
 	max-width: 1300px;
 
 	@media (min-width: 430px) {
-		padding: 8px;
+		padding: 0 8px;
 	}
 
 	@media (min-width: 800px) {
@@ -319,6 +328,8 @@ h3 {
 }
 
 .post {
+	padding-bottom: 44px;
+
 	.post-content {
 
 		.column {
@@ -489,9 +500,21 @@ h3 {
 		line-height: 44px;
 
 		.icon {
+			position: absolute;
 			height: 100%;
 			width: 33.3%;
-			float: left;
+
+			&.paginationPrev {
+				left: 0;
+			}
+
+			&.showCaption {
+				left: 33.33%;
+			}
+
+			&.paginationNext {
+				left: 66.66%;
+			}
 		}
 	}
 }

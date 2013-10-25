@@ -14,8 +14,8 @@ if (have_posts()) :
 		</div>
 
 		<div id="navigationLinks">
-			<div class="next"><?php next_post(); ?></div>
-			<div class="previous"><?php previous_post(); ?></div>
+			<div class="previous"><?php next_post_link('%link', '',true); ?></div>
+			<div class="next"><?php previous_post_link('%link','', true); ?></div>
 		</div>
 	<?php endwhile; ?>
 <?php else : ?>

@@ -1,5 +1,3 @@
-var previewActive = false;
-
 $(document).ready(function() {
 	// Masonry
 	$(window).on('load', function() {
@@ -10,7 +8,7 @@ $(document).ready(function() {
 
 	// Toggle off-screen Navigation
 	$('.toggleMenu').on('click', function() {
-		var offCanvasActive = $('.offCanvas').hasClass('active');
+		var offCanvasActive = $('html').hasClass('offCanvas-active');
 		offCanvasNavigation(!offCanvasActive);
 		previewInteraction(offCanvasActive);
 	});
@@ -25,7 +23,7 @@ $(document).ready(function() {
 });
 
 function offCanvasNavigation(state) {
-	$('.offCanvas').toggleClass('active', state);
+	$('html').toggleClass('offCanvas-active', state);
 	$('.menu-opener').toggleClass('open', state);
 	previewInteraction(!state);
 }
@@ -61,25 +59,37 @@ function bindNavigation() {
 	}
 
 
-	$('.image img, .paginationNext').on('click', function() {
-		navigate(nextLink);
+	$('.post img').on('click', function() {
+		if (nextLink) {
+			navigate(nextLink);
+		}
 	});
 
-	var navigationLinks = new Array(nextLink, previousLink);
-	return navigationLinks;
+	$(document).keyup(function(event) {
+		if (nextLink && event.keyCode == 39) {
+			navigate(nextLink);
+		} else if (previousLink && event.keyCode == 37) {
+			navigate(previousLink);
+		}
+	});
+
+	$('body').hammer().on("swipeleft", function(event) {
+		if (nextLink) {
+			navigate(nextLink);
+		}
+	});
+
+	$('body').hammer().on("swiperight", function(event) {
+		if (previousLink) {
+			navigate(previousLink);
+		}
+	});
 }
+
 
 function navigate(link) {
 	window.location.href = link;
 }
-
-$(document).keyup(function(event) {
-	if (previewActive && event.keyCode == 39) {
-		navigate(bindNavigation[0]);
-	} else if (previewActive && event.keyCode == 37) {
-		navigate(bindNavigation[1]);
-	}
-});
 
 function previewInteraction(state) {
 	$('.galleryInteraction').toggle(state);
@@ -89,7 +99,8 @@ function previewInteraction(state) {
 function updatePhotoInfo() {
 
 	// Show Info
-	$('.showCaption').on('click', function() {
+	$('.showCaption').on('click', function(e) {
+		$(e.currentTarget).toggleClass('hover');
 		$('.caption').toggle();
 	});
 
