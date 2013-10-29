@@ -2,7 +2,13 @@
 
 <section class="gallery">
 	<ul>
-		<?php query_posts('cat=-22'); ?>
+		<?php
+		query_posts(
+			array(
+				'tag__not_in' => array(get_tag_id_by_name('hide')),
+			)
+		);
+		?>
 		<?php if (have_posts()) : ?>
 		<?php while (have_posts()) : the_post(); ?>
 			<li id="post-<?php the_ID(); ?>" data-project-id="<?php the_ID(); ?>" class="thumb">
