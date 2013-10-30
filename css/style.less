@@ -283,9 +283,13 @@ h3 {
 
 .gallery {
 	.thumb {
-		cursor: pointer;
 		display: block;
+		.box-sizing(border-box);
+		min-width: 180px;
 		width: 100%;
+		padding: 5px;
+		float: left;
+		cursor: pointer;
 
 		@media (min-width: 360px) {
 			width: 50%;
@@ -297,11 +301,8 @@ h3 {
 
 		@media (min-width: 1030px) {
 			width: 25%;
+			padding: 10px;
 		}
-
-		min-width: 180px;
-		padding: 10px;
-		.box-sizing(border-box);
 
 		img {
 			width: 100%;
@@ -312,7 +313,7 @@ h3 {
 }
 
 .preview {
-	padding: 0 3px;
+	padding: 0 8px;
 
 	@media (min-width: 800px) {
 		padding: 0 12px;
