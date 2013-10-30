@@ -3,9 +3,8 @@
 @colorBg: #ffffff;
 @colorLight: lighten(@color, 70);
 
-@fontSpecial: 'REVOLUTION', Helvetica, Arial, sans-serif;
 @fontBasic: Helvetica, Arial, sans-serif;
-@fontSize: 12px;
+@fontSize: 14px;
 @fontSizeSmall: 10px;
 
 @navigationSize: 180px;
@@ -109,7 +108,7 @@ a {
 }
 
 h1, h2, h3, h4 {
-	font-family: @fontSpecial;
+	font-weight: bold;
 	letter-spacing: 1px;
 }
 
@@ -127,7 +126,7 @@ h2 {
 }
 
 h3 {
-	font-size: 12px;
+	font-size: 14px;
 	margin: 10px 0 5px;
 }
 
@@ -235,7 +234,7 @@ h3 {
 				> a {
 					display: block;
 					padding: 3px 12px;
-					font-family: @fontSpecial;
+					text-transform: uppercase;
 					line-height: 1.4;
 					.transition(.4s);
 
@@ -247,6 +246,7 @@ h3 {
 				&.current-menu-item, &.current-post-ancestor {
 					> a {
 						color: @color;
+						font-weight: bold;
 					}
 
 					.sub-menu {

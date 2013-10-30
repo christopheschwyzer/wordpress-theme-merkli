@@ -10,10 +10,7 @@
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>/css/style.css" type="text/css"
 		  media="screen, projection"/>
 
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
 	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico"/>
-
 	<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/01-modernizr.js"></script>
 
 	<?php wp_head(); ?>
