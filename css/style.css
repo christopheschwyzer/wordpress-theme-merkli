@@ -348,6 +348,7 @@ html.touch #navigation .main-menu .main-menu-list .menu-item > a {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
+  padding-bottom: 20px;
 }
 .post .post-content .column p {
   letter-spacing: normal;
@@ -370,6 +371,7 @@ html.touch #navigation .main-menu .main-menu-list .menu-item > a {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
+  padding-bottom: 20px;
 }
 .post .post-content .column2 p {
   letter-spacing: normal;
@@ -389,7 +391,6 @@ html.touch #navigation .main-menu .main-menu-list .menu-item > a {
   .post .post-content .column2 {
     width: 50%;
     float: left;
-    padding-bottom: 20px;
   }
   .post .post-content .column2:first-child {
     padding-right: 12px;
@@ -405,6 +406,7 @@ html.touch #navigation .main-menu .main-menu-list .menu-item > a {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
+  padding-bottom: 20px;
 }
 .post .post-content .column3 p {
   letter-spacing: normal;
