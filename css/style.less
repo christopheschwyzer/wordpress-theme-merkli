@@ -223,7 +223,8 @@ h3 {
 	}
 
 	.main-menu {
-		padding: 0 40px;
+		padding: 0 10px 0 40px;
+
 
 		.main-menu-list {
 			.menu-item {
@@ -233,7 +234,7 @@ h3 {
 					padding: 3px 12px;
 					text-transform: uppercase;
 					line-height: 1.4;
-					.transition(.4s);
+					.transition(.2s);
 
 					html.touch & {
 						padding: 8px 12px;
@@ -254,6 +255,7 @@ h3 {
 
 			.sub-menu {
 				margin-left: 12px;
+				margin-bottom: 20px;
 
 				.menu-item > a {
 					font-size: @fontSizeSmall;
@@ -426,6 +428,11 @@ h3 {
 			&.one {
 				display: block;
 				padding: 0;
+			}
+
+			&.fill {
+				width: 100%;
+				height: auto;
 			}
 		}
 

@@ -220,18 +220,18 @@ html.offCanvas-active #navigation {
   }
 }
 #navigation .main-menu {
-  padding: 0 40px;
+  padding: 0 10px 0 40px;
 }
 #navigation .main-menu .main-menu-list .menu-item > a {
   display: block;
   padding: 3px 12px;
   text-transform: uppercase;
   line-height: 1.4;
-  -webkit-transition: 0.4s;
-  -moz-transition: 0.4s;
-  -o-transition: 0.4s;
-  -ms-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  transition: 0.2s;
 }
 html.touch #navigation .main-menu .main-menu-list .menu-item > a {
   padding: 8px 12px;
@@ -247,6 +247,7 @@ html.touch #navigation .main-menu .main-menu-list .menu-item > a {
 }
 #navigation .main-menu .main-menu-list .sub-menu {
   margin-left: 12px;
+  margin-bottom: 20px;
 }
 #navigation .main-menu .main-menu-list .sub-menu .menu-item > a {
   font-size: 10px;
@@ -462,6 +463,10 @@ html.touch #navigation .main-menu .main-menu-list .menu-item > a {
 .post .post-content img.one {
   display: block;
   padding: 0;
+}
+.post .post-content img.fill {
+  width: 100%;
+  height: auto;
 }
 .post .post-content video {
   width: 100% !important;
