@@ -99,12 +99,6 @@ function previewInteraction(state) {
 
 function updatePhotoInfo() {
 
-	// Show Info
-	$('.showCaption').on('click', function(e) {
-		$(e.currentTarget).toggleClass('hover');
-		$('.caption').toggle();
-	});
-
 	var galleryToggle = function(state) {
 		$('.galleryInteraction').toggleClass('visible', state);
 	}
