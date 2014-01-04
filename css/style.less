@@ -77,7 +77,6 @@
 }
 
 // Merkli Styles
-
 html, body {
 	.box-sizing(border-box);
 	height: 100%;
@@ -99,11 +98,8 @@ a {
 	color: lighten(@color, 40);
 	text-decoration: none;
 
-	html.no-touch & {
-		&:hover {
-			color: @color;
-			text-decoration: underline;
-		}
+	&:hover {
+		color: @color;
 	}
 }
 
@@ -159,7 +155,7 @@ h3 {
 	}
 
 	@media (min-width: 800px) {
-		padding: 40px 0 0 40px;
+		padding: 40px 0 0 52px;
 	}
 }
 
@@ -192,17 +188,18 @@ h3 {
 }
 
 .offCanvas {
+	@media (min-width: 400px) {
+		height: auto;
+	}
 	height: 100%;
 	.transform(translate3d(0, 0, 0));
 	.transition(200ms);
-
 
 	html.offCanvas-active & {
 		.transform(translate3d(-@navigationSize, 0, 0));
 		perspective: 1000;
 	}
 }
-
 
 #navigation {
 	.box-sizing(border-box);
@@ -222,7 +219,7 @@ h3 {
 
 	@media (min-width: 800px) {
 		background-color: @colorBg;
-		top: 140px;
+		top: 115px;
 		right: auto;
 		left: 0;
 		.transform(translate3d(0, 0, 0));
@@ -264,6 +261,7 @@ h3 {
 
 				.menu-item > a {
 					font-size: @fontSizeSmall;
+					padding: 3px 0;
 				}
 			}
 
@@ -273,7 +271,6 @@ h3 {
 		}
 	}
 }
-
 
 .sheet {
 	.box-sizing(border-box);
@@ -355,6 +352,11 @@ h3 {
 				text-align: justify;
 			}
 
+			h3 {
+				margin-top: 0;
+				line-height: 1;
+			}
+
 			img {
 				padding: 0 !important;
 				width: 100%;
@@ -405,7 +407,8 @@ h3 {
 			}
 
 			&.one {
-				width: 100%;
+				display: block;
+				margin: 0 auto;
 				padding: 0;
 			}
 
@@ -418,9 +421,6 @@ h3 {
 	}
 
 	.caption {
-		display: none;
-		text-align: center;
-
 		.category {
 			display: inline;
 			font-size: @fontSizeSmall;
@@ -510,7 +510,7 @@ h3 {
 			}
 		}
 
-		.showCaption{
+		.showCaption {
 			position: fixed;
 			z-index: 2;
 			top: 8px;
@@ -533,10 +533,6 @@ h3 {
 
 			&.paginationPrev {
 				left: 0;
-			}
-
-			&.showCaption {
-				left: 33.33%;
 			}
 
 			&.paginationNext {
