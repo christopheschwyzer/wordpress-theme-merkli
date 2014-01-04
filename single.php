@@ -8,8 +8,9 @@ if (have_posts()) :
 				<?php the_content(); ?>
 			</div>
 			<div class="caption">
-				<h3 class="title"><?php the_title(); ?></h3>
-				<div class="description"><?php the_excerpt(); ?></div>
+				<h3 class="title">
+				<?php if (function_exists('has_excerpt') && has_excerpt()) the_excerpt(); ?>
+				</h3>
 			</div>
 		</div>
 

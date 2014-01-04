@@ -1,5 +1,5 @@
 //Variables
-@color: #333;
+@color: #000;
 @colorBg: #ffffff;
 @colorLight: lighten(@color, 70);
 
@@ -77,7 +77,6 @@
 }
 
 // Merkli Styles
-
 html, body {
 	.box-sizing(border-box);
 	height: 100%;
@@ -99,11 +98,8 @@ a {
 	color: lighten(@color, 40);
 	text-decoration: none;
 
-	html.no-touch & {
-		&:hover {
-			color: @color;
-			text-decoration: underline;
-		}
+	&:hover {
+		color: @color;
 	}
 }
 
@@ -159,7 +155,7 @@ h3 {
 	}
 
 	@media (min-width: 800px) {
-		padding: 40px 0 0 40px;
+		padding: 40px 0 0 52px;
 	}
 }
 
@@ -192,10 +188,8 @@ h3 {
 }
 
 .offCanvas {
-	height: 100%;
 	.transform(translate3d(0, 0, 0));
 	.transition(200ms);
-
 
 	html.offCanvas-active & {
 		.transform(translate3d(-@navigationSize, 0, 0));
@@ -203,13 +197,12 @@ h3 {
 	}
 }
 
-
 #navigation {
 	.box-sizing(border-box);
 	position: fixed;
 	width: @navigationSize;
 	right: 0;
-	top: 40px;
+	top: 55px;
 	height: 100%;
 	z-index: 1;
 	background-color: @colorBg;
@@ -222,7 +215,7 @@ h3 {
 
 	@media (min-width: 800px) {
 		background-color: @colorBg;
-		top: 140px;
+		top: 115px;
 		right: auto;
 		left: 0;
 		.transform(translate3d(0, 0, 0));
@@ -230,7 +223,8 @@ h3 {
 	}
 
 	.main-menu {
-		padding: 0 40px;
+		padding: 0 10px 0 40px;
+
 
 		.main-menu-list {
 			.menu-item {
@@ -240,7 +234,7 @@ h3 {
 					padding: 3px 12px;
 					text-transform: uppercase;
 					line-height: 1.4;
-					.transition(.4s);
+					.transition(.2s);
 
 					html.touch & {
 						padding: 8px 12px;
@@ -261,19 +255,20 @@ h3 {
 
 			.sub-menu {
 				margin-left: 12px;
+				margin-bottom: 20px;
 
 				.menu-item > a {
 					font-size: @fontSizeSmall;
+					padding: 3px 0;
 				}
 			}
 
 			:not(.current-menu-parent) .sub-menu {
-				display: none;
+//				display: none;
 			}
 		}
 	}
 }
-
 
 .sheet {
 	.box-sizing(border-box);
@@ -348,11 +343,17 @@ h3 {
 		.column {
 			.box-sizing(border-box);
 			width: 100%;
+			padding-bottom: 20px;
 
 			p {
 				letter-spacing: normal;
 				font-size: 14px;
 				text-align: justify;
+			}
+
+			h3 {
+				margin-top: 0;
+				line-height: 1;
 			}
 
 			img {
@@ -368,7 +369,14 @@ h3 {
 			@media (min-width: 600px) {
 				width: 50%;
 				float: left;
-				padding: 0 12px;
+
+				&:first-child {
+					padding-right: 12px;
+				}
+
+				&:last-child {
+					padding-left: 12px;
+				}
 			}
 		}
 
@@ -378,7 +386,20 @@ h3 {
 			@media (min-width: 1000px) {
 				float: left;
 				width: 33.3%;
-				padding: 0 12px;
+				padding-bottom:20px;
+
+				&:first-child {
+					padding-right: 16px;
+				}
+
+				&:nth-child(2) {
+					padding-right: 8px;
+					padding-left: 8px;
+				}
+
+				&:last-child {
+					padding-left: 16px;
+				}
 			}
 		}
 
@@ -405,10 +426,14 @@ h3 {
 			}
 
 			&.one {
-				width: 100%;
+				display: block;
 				padding: 0;
 			}
 
+			&.fill {
+				width: 100%;
+				height: auto;
+			}
 		}
 
 		video {
@@ -418,9 +443,6 @@ h3 {
 	}
 
 	.caption {
-		display: none;
-		text-align: center;
-
 		.category {
 			display: inline;
 			font-size: @fontSizeSmall;
@@ -447,14 +469,7 @@ h3 {
 	background-size: 20px 20px;
 	background-position: center;
 	background-repeat: no-repeat;
-	opacity: .1;
-	.transition(200ms);
-
-	&:hover, &.hover {
-		html.no-touch & {
-			opacity: 1;
-		}
-	}
+	opacity: .3;
 
 	&.arrow-left {
 		background-image: url(../img/icon/left.png);
@@ -483,16 +498,10 @@ h3 {
 		display: block;
 	}
 
-	&:not(.visible) {
-		html.no-touch & {
-			opacity: 0;
-		}
-	}
-
 	@media (min-width: 800px) {
 
 		.icon {
-			opacity: .2;
+			opacity: .3;
 		}
 
 		.paginationPrev, .paginationNext {
@@ -508,13 +517,6 @@ h3 {
 			&.arrow-right {
 				right: 0;
 			}
-		}
-
-		.showCaption{
-			position: fixed;
-			z-index: 2;
-			top: 8px;
-			right: 8px;
 		}
 	}
 
@@ -533,10 +535,6 @@ h3 {
 
 			&.paginationPrev {
 				left: 0;
-			}
-
-			&.showCaption {
-				left: 33.33%;
 			}
 
 			&.paginationNext {
