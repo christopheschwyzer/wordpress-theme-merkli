@@ -480,16 +480,7 @@ html.touch #navigation .main-menu .main-menu-list .menu-item > a {
   background-size: 20px 20px;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: .1;
-  -webkit-transition: 200ms;
-  -moz-transition: 200ms;
-  -o-transition: 200ms;
-  -ms-transition: 200ms;
-  transition: 200ms;
-}
-html.no-touch .icon:hover,
-html.no-touch .icon.hover {
-  opacity: 1;
+  opacity: .3;
 }
 .icon.arrow-left {
   background-image: url(../img/icon/left.png);
@@ -518,12 +509,9 @@ html.no-touch .icon.hover {
 body.single .galleryInteraction {
   display: block;
 }
-html.no-touch .galleryInteraction:not(.visible) {
-  opacity: 0;
-}
 @media (min-width: 800px) {
   .galleryInteraction .icon {
-    opacity: .2;
+    opacity: .3;
   }
   .galleryInteraction .paginationPrev,
   .galleryInteraction .paginationNext {
@@ -540,12 +528,6 @@ html.no-touch .galleryInteraction:not(.visible) {
   .galleryInteraction .paginationPrev.arrow-right,
   .galleryInteraction .paginationNext.arrow-right {
     right: 0;
-  }
-  .galleryInteraction .showCaption {
-    position: fixed;
-    z-index: 2;
-    top: 8px;
-    right: 8px;
   }
 }
 @media (max-width: 799px) {
