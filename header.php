@@ -15,7 +15,7 @@
 
 	<?php wp_head(); ?>
 	<meta name="description" content="CEDRIC CHRISTOPHER MERKLI - PHOTOGRAPHY + VISUAL WORK" />
-	<title><?php bloginfo('name'); ?> <?php wp_title(); ?></title>
+	<title>CEDRIC CHRISTOPHER MERKLI</title>
 </head>
 <body <?php body_class(); ?>>
 
