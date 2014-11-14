@@ -40,7 +40,7 @@ body {
 }
 body {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 11px;
   line-height: 1.5;
 }
 p {
@@ -63,22 +63,12 @@ h1 {
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
-@media (min-width: 400px) {
-  h1 {
-    font-size: 18px;
-  }
-}
-@media (min-width: 800px) {
-  h1 {
-    font-size: 24px;
-  }
-}
 h2 {
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 20px;
 }
 h3 {
-  font-size: 14px;
+  font-size: 12px;
   margin: 10px 0 5px;
 }
 .header,
@@ -345,7 +335,7 @@ html.touch #navigation .main-menu .main-menu-list .menu-item > a {
   padding-bottom: 20px;
 }
 .post .post-content .column p {
-  font-size: 14px;
+  font-size: 11px;
   text-align: justify;
 }
 .post .post-content .column h3 {
@@ -367,7 +357,6 @@ html.touch #navigation .main-menu .main-menu-list .menu-item > a {
   padding-bottom: 20px;
 }
 .post .post-content .column2 p {
-  font-size: 14px;
   text-align: justify;
 }
 .post .post-content .column2 h3 {
@@ -401,7 +390,6 @@ html.touch #navigation .main-menu .main-menu-list .menu-item > a {
   padding-bottom: 20px;
 }
 .post .post-content .column3 p {
-  font-size: 14px;
   text-align: justify;
 }
 .post .post-content .column3 h3 {
